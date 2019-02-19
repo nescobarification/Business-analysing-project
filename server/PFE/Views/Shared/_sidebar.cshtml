@@ -1,0 +1,56 @@
+<!-- Side Navbar -->
+<nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+        <!-- Sidebar Header    -->
+        <div class="sidenav-header d-flex align-items-center justify-content-center">
+            <!-- User Info-->
+            <div class="sidenav-header-inner text-center">
+                <img src="http://via.placeholder.com/100x100?text=PFE" alt="person" class="img-fluid rounded-circle" />
+                <h2 class="h5">GDD</h2>
+                <span>A PFE Project</span>
+            </div>
+            <!-- Small Brand information, appears on minimized sidebar-->
+            <div class="sidenav-header-logo">
+                <a href="#" class="brand-small text-center">
+                    <strong class="text-primary">PFE</strong>
+                    <strong>18</strong>
+                </a>
+            </div>
+        </div>
+        <!-- Sidebar Navigation Menus-->
+        <div class="main-menu">
+            <h5 class="sidenav-heading">Main</h5>
+            <ul id="side-main-menu" class="side-menu list-unstyled">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> Home</a></li>
+                <li><a asp-area="" asp-controller="Metric" asp-action="UpdateSummary"><i class="fa fa-tags"></i> Metric</a></li>
+                <li><a href="#">Forms</a></li>
+                <li><a href="#">Charts</a></li>
+                <li><a href="#">Tables</a></li>
+                <li>
+                    <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
+                        <i class="icon-interface-windows"></i>Example dropdown
+                    </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Login page</a></li>
+                <li><a href="#"><i class="fa fa-envelope"></i>Demo <div class="badge badge-warning">6 New</div></a></li>
+            </ul>
+        </div>
+        <div class="admin-menu">
+            <h5 class="sidenav-heading">Admin menu</h5>
+            <ul id="side-admin-menu" class="side-menu list-unstyled"> 
+                <li><a href="#"><i class="fa fa-desktop"></i> Demo</a></li>
+                <li>
+                    <a href="#"><i class="fa fa-flask"></i> Demo
+                    <div class="badge badge-info">Special</div></a>
+                </li>
+                <li><a href=""><i class="fa fa-flask"></i> Demo</a></li>
+                <li><a href=""><i class="fa fa-image"></i> Demo</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

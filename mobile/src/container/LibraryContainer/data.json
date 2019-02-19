@@ -1,0 +1,135 @@
+[
+    {
+        "id": 1,
+        "title": "Hello World",
+        "subtitle": "Dummy pdf",
+        "cover": "https://s3.amazonaws.com/cvolcy/others/mag_cover.jpg",
+        "link": "https://s3.amazonaws.com/cvolcy/others/HelloWorld.pdf",
+        "metadata": [
+            {
+                "page": 1,
+                "features": [
+                    {
+                        "id": 1,
+                        "name": "Pizza"
+                    }
+                ]
+            },
+            {
+                "page": 2,
+                "features": [
+                    {
+                        "id": 2,
+                        "name": "Hamburger"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Hotdog"
+                    }
+                ]
+            },
+            {
+                "page": 4,
+                "features": [
+                    {
+                        "id": 1,
+                        "name": "Pizza"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "A Little Semantic",
+        "subtitle": "Makes you think twice about changing career",
+        "cover": "https://s3.amazonaws.com/cvolcy/others/mag_cover.jpg",
+        "link": "https://s3.amazonaws.com/cvolcy/others/LOG635-LabSemantiqueLevis.pdf",
+        "metadata": [
+            {
+                "page": 1,
+                "features": [
+                    {
+                        "id": 4,
+                        "name": "Rapport King"
+                    }
+                ]
+            },
+            {
+                "page": 2,
+                "features": [
+                    {
+                        "id": 5,
+                        "name": "ETS"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Last Semester"
+                    }
+                ]
+            },
+            {
+                "page": 4,
+                "features": [
+                    {
+                        "id": 5,
+                        "name": "ETS"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Only ETS Students Know",
+        "subtitle": "The Struggle",
+        "cover": "https://s3.amazonaws.com/cvolcy/others/mag_cover.jpg",
+        "link": "https://s3.amazonaws.com/cvolcy/others/LOG610-FeuilleNotes.pdf",
+        "metadata": []
+    },
+    {
+        "id": 4,
+        "title": "Student Life",
+        "subtitle": "ETS students no de wey!",
+        "cover": "https://s3.amazonaws.com/cvolcy/others/mag_cover.jpg",
+        "link": "https://s3.amazonaws.com/cvolcy/others/School_Life.pdf",
+        "metadata": [
+            {
+                "page": 1,
+                "features": [
+                    {
+                        "id": 7,
+                        "name": "Finish Exam"
+                    }
+                ]
+            },
+            {
+                "page": 2,
+                "features": [
+                    {
+                        "id": 8,
+                        "name": "Leaving Exam"
+                    }
+                ]
+            },
+            {
+                "page": 3,
+                "features": [
+                    {
+                        "id": 9,
+                        "name": "Funny"
+                    }
+                ]
+            },
+            {
+                "page": 4,
+                "features": [
+                    {
+                        "id": 10,
+                        "name": "ChemiNot"
+                    }
+                ]
+            }
+        ]
+    }
+]

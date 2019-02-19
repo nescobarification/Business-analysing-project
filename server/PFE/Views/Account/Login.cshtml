@@ -1,0 +1,61 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@section Head {
+    <style>
+        .login-page .form-group-material {
+            margin-bottom: 0;
+        }
+    </style>
+}
+
+<div class="page login-page">
+    <div class="container">
+        <div class="form-outer text-center d-flex align-items-center">
+            <div class="form-inner">
+                <div class="logo text-uppercase">
+                    <span>PFE H18</span><strong class="text-primary">GDD</strong>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group-material">
+                        <input asp-for="Email" class="input-material" required data-msg="Please enter your username" />
+                        <label asp-for="Email" class="label-material"></label>
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="form-group-material">
+                        <input asp-for="Password" required data-msg="Please enter your password" class="input-material" />
+                        <label asp-for="Password" class="label-material"></label>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="RememberMe">
+                                <input asp-for="RememberMe" />
+                                @Html.DisplayNameFor(m => m.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group text-center"><button type="submit" class="btn btn-primary">Log in</button>
+                    </div>
+                </form>
+                <a href="#">Forgot Password?</a>
+                <small>Do not have an account? </small>
+                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Signup</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

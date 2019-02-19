@@ -1,0 +1,283 @@
+﻿@model UpdateSummaryFeatureViewModel
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "UpdateSummary";
+}
+
+<script type="text/javascript" src="~/lib/datatables/dist/js/datatables.min.js"></script>
+<script type="text/javascript" src="~/lib/Chart/dist/js/Chart.min.js"></script>
+
+<style>
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: slategrey;
+    }
+
+    /* Style the tab */
+    .tab {
+        float: left;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        width: 20%;
+        height: 550px;
+    }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current "tab button" class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        float: left;
+        padding: 0px 12px;
+        border: 1px solid #ccc;
+        width: 80%;
+        border-left: none;
+        height: 550px;
+    }
+</style>
+<section class="dashboard-counts section-padding">
+    <div class="container-fluid">
+        <div class="tab">
+            <button class="tablinks" onclick="openStats(event, 'SummaryFeature')" id="defaultOpen">Summary feature</button>
+            <button class="tablinks" onclick="openStats(event, 'MetricFeature')">Metric feature</button>
+        </div>
+        <div id="SummaryFeature" class="tabcontent">
+            @{ 
+                // ghetto style
+                var summaryToDisplay = Model.ListSummary.FirstOrDefault();
+            }
+            <table id="summaryTable" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.Feature.FeatureId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.Feature.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.User)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.SumOfFeatureSeen)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.LastFeatureSeenDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.AverageDuration)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.Recency)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.Frequency)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => summaryToDisplay.Duration)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListSummary)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Feature.FeatureId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Feature.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SumOfFeatureSeen)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastFeatureSeenDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AverageDuration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Recency)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Frequency)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duration)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="MetricFeature" class="tabcontent">
+            @{
+                // ghetto style
+                var metricToDisplay = Model.ListSummary.FirstOrDefault();
+            }
+            <table id="metricFeatureTable" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => metricToDisplay.Feature.FeatureId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => metricToDisplay.Feature.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => metricToDisplay.User.Email)
+                        </th>
+                        <th>
+                            PDF ID
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Duration
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListMetricFeature)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Feature.FeatureId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Feature.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PdfId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duration)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#summaryTable').DataTable();
+        $('#metricFeatureTable').DataTable();
+
+    });
+
+
+    function openStats(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var chart1Json = @Html.Raw(JsonConvert.SerializeObject(Model.Chart1));
+
+    var dataChart1 = [];
+    var labelChart1 = [];
+
+    chart1Json.forEach(function (element) {
+        dataChart1.push(element.count);
+        labelChart1.push(element.metricFeature)
+    });
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labelChart1,
+            datasets: [{
+                data: dataChart1,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: 'Sommes des vues par Feature'
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+</script>
