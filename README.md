@@ -5,3 +5,8 @@ App used to view magazines and gather information of the reading users.
 Here are the contribution for each team member.
 
 ![Screenshot](Business-analisis-project-contributions.png)
+
+
+# Final website page interface
+
+![Screenshot](WebPageInterface.png)
